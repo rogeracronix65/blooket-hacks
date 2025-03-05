@@ -7612,69 +7612,6 @@
                 return wfcall.apply(this, arguments);
             C.alerts?.[0].addLog("Blooket Cheat Report Blocked!")
         }
-})();(() => {
-    // Existing code...
-
-    function addGameMode(name, description, runFunction) {
-        let gameMode = {
-            name: name,
-            description: description,
-            type: "toggle",
-            enabled: false,
-            data: null,
-            run: runFunction
-        };
-        C.global.push(gameMode);
-    }
-
-    // Adding Laser Tag mode with Aimbot, Wall Penetration, and Proximity Detection
-    addGameMode("Laser Tag", "New Blooket Beta Mode - Laser Tag with Aimbot, Wall Penetration, and Proximity Alert", function() {
-        if (this.enabled) {
-            this.enabled = false;
-            clearInterval(this.data);
-            this.data = null;
-        } else {
-            this.enabled = true;
-            this.data = setInterval(() => {
-                console.log("Laser Tag Mode Activated with Aimbot, Wall Penetration, and Proximity Alert");
-                
-                // Aimbot logic
-                let enemies = document.querySelectorAll(".enemy");
-                if (enemies.length > 0) {
-                    let target = enemies[0]; // Simplified targeting logic
-                    let player = document.querySelector(".player");
-                    if (player) {
-                        player.aimAt(target);
-                        player.shoot();
-                    }
-                }
-                
-                // Wall penetration logic
-                let lasers = document.querySelectorAll(".laser");
-                lasers.forEach(laser => {
-                    laser.style.zIndex = 9999; // Ensures lasers render on top
-                    laser.setAttribute("data-penetrate", "true"); // Custom attribute for wall bypass
-                });
-                
-                // Proximity detection with beep alert
-                let player = document.querySelector(".player");
-                if (player) {
-                    enemies.forEach(enemy => {
-                        let distance = Math.hypot(
-                            enemy.offsetLeft - player.offsetLeft,
-                            enemy.offsetTop - player.offsetTop
-                        );
-                        if (distance < 200) { // Adjust range as needed
-                            let beep = new Audio("https://www.soundjay.com/button/beep-07.wav");
-                            beep.play();
-                        }
-                    });
-                }
-            }, 100);
-        }
-    });
-
-    console.log("Laser Tag mode added with Aimbot, Wall Penetration, and Proximity Alert.");
 })();
 
 
